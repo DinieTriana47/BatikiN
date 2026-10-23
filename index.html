@@ -1,265 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BatikiN — Eksplorasi motif batik Nusantara berbasis kecerdasan buatan.">
-  <title>BatikiN | Batik Intelligence</title>
+  <meta name="description" content="BatikiN (Batik Innovation Nusantara): pemanfaatan Convolutional Neural Network untuk pengembangan motif batik dan ekosistem industri kreatif Nusantara.">
+  <title>BatikiN — Batik Innovation Nusantara</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <header class="navbar">
-    <a class="brand" href="#">
-      <span class="brand-icon">B</span>
-      <span>Batiki<span class="brand-accent">N</span>
-        <small>BATIK INTELLIGENCE</small>
-      </span>
+    <a class="brand" href="#beranda" aria-label="BatikiN Beranda">
+      <span class="brand-icon" aria-hidden="true">✿</span>
+      <span><strong>BatikiN</strong><small>Batik Innovation Nusantara</small></span>
     </a>
-
-    <nav class="nav-links">
-      <a class="active" href="#dashboard">Dashboard</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a class="active" href="#beranda">Beranda</a>
       <a href="#identifikasi">Identifikasi</a>
-      <a href="#motif">Galeri Motif</a>
+      <a href="#galeri">Galeri Motif</a>
       <a href="#tentang">Tentang</a>
     </nav>
-
-    <a class="nav-button" href="#identifikasi">Mulai Eksplorasi ↗</a>
+    <a class="nav-button" href="#identifikasi">Mulai Eksplorasi <span>↗</span></a>
   </header>
 
   <main>
-    <section class="hero" id="dashboard">
+    <section class="hero" id="beranda">
+      <div class="hero-art" aria-hidden="true"><img src="assets/batik-hero.jpg" alt=""></div>
+      <div class="hero-ornament ornament-left" aria-hidden="true">❀</div>
+      <div class="hero-ornament ornament-right" aria-hidden="true">❋</div>
       <div class="hero-content">
-        <div class="eyebrow">
-          <span class="status-dot"></span>
-          TEKNOLOGI AI UNTUK WARISAN NUSANTARA
-        </div>
-
-        <h1>Mengenal Batik,<br>
-          <span>Menjaga Warisan.</span>
-        </h1>
-
-        <p class="hero-description">
-          Jelajahi kekayaan motif batik Indonesia melalui teknologi
-          kecerdasan buatan. Kenali pola, temukan karakteristik,
-          dan kenali cerita di balik warisan budaya Nusantara.
-        </p>
-
+        <div class="eyebrow"><span class="status-dot"></span> PEMANFAATAN CONVOLUTIONAL NEURAL NETWORK</div>
+        <h1>BatikiN,<br>Menjaga Warisan,<br><span>Menginspirasi Masa Depan.</span></h1>
+        <p class="hero-description">BatikiN (Batik Innovation Nusantara) memanfaatkan teknologi kecerdasan buatan, khususnya <em>Convolutional Neural Network</em>, untuk mendukung pengembangan motif batik dan ekosistem industri kreatif Nusantara.</p>
         <div class="hero-actions">
-          <a class="primary-button" href="#identifikasi">
-            Identifikasi Motif <span>→</span>
-          </a>
-          <a class="secondary-button" href="#motif">
-            Jelajahi Galeri
-          </a>
-        </div>
-
-        <div class="hero-note">
-          <span>✳</span>
-          Menggabungkan warisan budaya dan inovasi teknologi
+          <a class="primary-button" href="#identifikasi">▦ &nbsp; Identifikasi Motif <span>→</span></a>
+          <a class="secondary-button" href="#galeri">▧ &nbsp; Jelajahi Galeri</a>
         </div>
       </div>
-
-      <div class="hero-art">
-        <div class="art-frame">
-          <div class="art-label">BATIK NUSANTARA · 01</div>
-          <div class="batik-pattern"></div>
-          <div class="art-caption">
-            <span>Warisan dalam setiap pola.</span>
-            <span>✳</span>
-          </div>
-        </div>
-        <div class="floating-card">
-          <span class="floating-icon">✳</span>
-          <div>
-            <strong>Culture meets AI</strong>
-            <small>Digitalisasi budaya Indonesia</small>
-          </div>
-        </div>
-      </div>
+      <div class="hero-note"><span>TRADISI<br>BERTEMU<br>TEKNOLOGI<br>UNTUK NUSANTARA</span><i></i></div>
     </section>
 
-    <section class="stats-section" aria-label="Ringkasan proyek">
-      <div class="stat-card">
-        <span class="stat-icon">▧</span>
-        <div>
-          <p class="stat-label">DATASET GAMBAR</p>
-          <h2>1.350 <span>gambar</span></h2>
-          <p class="stat-description">Data pelatihan dan pengujian</p>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <span class="stat-icon">✳</span>
-        <div>
-          <p class="stat-label">KATEGORI MOTIF</p>
-          <h2>15 <span>kelas</span></h2>
-          <p class="stat-description">Kategori pada model penelitian</p>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <span class="stat-icon">◉</span>
-        <div>
-          <p class="stat-label">TEKNOLOGI MODEL</p>
-          <h2>CNN <span>Deep Learning</span></h2>
-          <p class="stat-description">MobileNetV2 sebagai arsitektur dasar</p>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <span class="stat-icon">⌘</span>
-        <div>
-          <p class="stat-label">PLATFORM</p>
-          <h2>BatikiN</h2>
-          <p class="stat-description">Eksplorasi digital batik Nusantara</p>
-        </div>
-      </div>
+    <section class="stats" aria-label="Ringkasan BatikiN">
+      <article class="stat-card"><span class="stat-icon">▧</span><div><h2>1.350</h2><strong>gambar</strong><p>Data pelatihan dan pengujian</p></div></article>
+      <article class="stat-card"><span class="stat-icon">▦</span><div><h2>15</h2><strong>kelas</strong><p>Kategori motif batik</p></div></article>
+      <article class="stat-card"><span class="stat-icon">▣</span><div><h2>CNN</h2><strong>Deep Learning</strong><p>MobileNetV2 sebagai arsitektur dasar</p></div></article>
+      <article class="stat-card"><span class="stat-icon">◉</span><div><h2>BatikiN</h2><strong class="brand-stat">Batik Innovation Nusantara</strong><p>Eksplorasi digital batik Nusantara</p></div></article>
     </section>
 
-    <section class="workspace" id="identifikasi">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">AI MOTIF RECOGNITION</p>
-          <h2>Identifikasi Motif Batik</h2>
-          <p>Unggah gambar untuk memulai proses eksplorasi motif.</p>
-        </div>
-        <span class="section-number">01 / IDENTIFIKASI</span>
+    <section class="section identification" id="identifikasi">
+      <div class="section-heading"><div class="section-kicker">AI MOTIF RECOGNITION</div><h2>Identifikasi Motif Batik</h2><p>Unggah gambar batik untuk memulai proses eksplorasi motif dengan teknologi Convolutional Neural Network.</p></div>
+      <div class="workflow">
+        <div class="workflow-card"><span>⇧</span><div><strong>1. Unggah Gambar</strong><small>Pilih file JPG, JPEG, atau PNG</small></div></div><b class="workflow-arrow">→</b>
+        <div class="workflow-card"><span>⚙</span><div><strong>2. Analisis dengan CNN</strong><small>Model MobileNetV2 memproses gambar</small></div></div><b class="workflow-arrow">→</b>
+        <div class="workflow-card"><span>▥</span><div><strong>3. Hasil Identifikasi</strong><small>Dapatkan prediksi motif batik</small></div></div><b class="workflow-arrow">→</b>
+        <div class="workflow-card"><span>▤</span><div><strong>4. Jelajahi Informasi</strong><small>Pelajari makna dan ceritanya</small></div></div>
       </div>
-
-      <div class="upload-layout">
+      <div class="identify-panel">
         <div class="upload-panel">
-          <label class="upload-zone" for="imageInput">
-            <span class="upload-icon">↑</span>
-            <strong>Pilih gambar batik</strong>
-            <span>JPG, JPEG, atau PNG</span>
-            <span class="upload-cta">Pilih dari perangkat</span>
-          </label>
-          <input id="imageInput" type="file"
-                 accept="image/jpeg,image/png,image/webp"
-                 hidden>
-
-          <div class="preview-container" id="previewContainer" hidden>
-            <img id="imagePreview" alt="Pratinjau gambar batik">
-            <p id="fileName"></p>
-            <button id="removeImage" class="text-button" type="button">
-              Hapus gambar
-            </button>
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-symbol">⇧</div><h3>Pilih gambar batik di sini</h3><p>Seret dan lepas gambar atau klik tombol di bawah.</p>
+            <small>Format JPG, JPEG, PNG · Maksimal 8 MB</small>
+            <input type="file" id="imageInput" accept="image/png,image/jpeg,image/jpg">
+            <label class="primary-button file-button" for="imageInput">Pilih Gambar</label>
           </div>
-
-          <p class="upload-tip">
-            Tips: gunakan gambar batik yang jelas dan memiliki pencahayaan baik.
-          </p>
+          <div class="preview-wrap" id="previewWrap" hidden><img id="imagePreview" alt="Pratinjau gambar batik"><button class="secondary-button" id="removeImage" type="button">Ganti gambar</button></div>
         </div>
-
-        <div class="result-panel">
-          <div class="result-header">
-            <span class="result-indicator"></span>
-            HASIL IDENTIFIKASI
-          </div>
-
-          <div class="result-placeholder" id="resultPlaceholder">
-            <span class="result-symbol">✳</span>
-            <h3>Siap mengenali motif?</h3>
-            <p>
-              Pratinjau gambar akan muncul setelah kamu memilih file.
-              Hasil klasifikasi akan tersedia setelah model CNN
-              dihubungkan ke aplikasi.
-            </p>
-          </div>
-
-          <div class="result-message" id="resultMessage" hidden>
-            <strong>Gambar berhasil dipilih.</strong>
-            <p>
-              Gambar siap untuk tahap identifikasi. Model CNN belum
-              terhubung pada halaman ini.
-            </p>
-          </div>
-
-          <div class="result-footer">
-            <span>MODEL</span>
-            <span>MobileNetV2 · CNN</span>
-          </div>
-        </div>
+        <div class="result-panel"><div class="result-title">✿ &nbsp; Hasil Identifikasi</div><div id="resultPlaceholder"><span class="result-flower">✳</span><h3>Siap mengenali motif?</h3><p>Unggah gambar untuk melihat pratinjau. Prediksi CNN memerlukan layanan model yang aktif.</p></div><div id="resultMessage" hidden role="status"></div><div class="model-note"><span>MODEL</span><strong>MobileNetV2 · CNN</strong><small>Identifikasi otomatis aktif setelah backend model terhubung.</small></div></div>
       </div>
+      <p class="tip">Tips: gunakan gambar batik yang jelas, tidak buram, dan memiliki pencahayaan yang baik.</p>
     </section>
 
-    <section class="gallery-section" id="motif">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">CULTURAL DISCOVERY</p>
-          <h2>Jelajahi Kekayaan Motif</h2>
-          <p>Ruang untuk mengenal keberagaman pola dan identitas batik Indonesia.</p>
-        </div>
-        <span class="section-number">02 / GALERI</span>
+    <section class="section gallery-section" id="galeri">
+      <div class="section-heading"><div class="section-kicker">CULTURAL DISCOVERY</div><h2>Jelajahi Kekayaan Motif</h2><p>Ruang untuk mengenal keberagaman pola dan identitas batik Indonesia.</p></div>
+      <div class="gallery-toolbar"><span>Galeri referensi motif</span><div><button class="round-button" id="galleryPrev" aria-label="Motif sebelumnya">‹</button><button class="round-button" id="galleryNext" aria-label="Motif berikutnya">›</button></div></div>
+      <div class="motif-grid" id="motifGrid">
+        <article class="motif-card"><img src="assets/parang.jpg" alt="Pola batik Parang"><div class="motif-card-content"><h3>Parang</h3><p>Jawa</p></div></article>
+        <article class="motif-card"><img src="assets/kawung.jpg" alt="Pola batik Kawung"><div class="motif-card-content"><h3>Kawung</h3><p>Jawa Tengah</p></div></article>
+        <article class="motif-card"><img src="assets/mega-mendung.jpg" alt="Pola batik Mega Mendung"><div class="motif-card-content"><h3>Mega Mendung</h3><p>Cirebon</p></div></article>
+        <article class="motif-card"><img src="assets/truntum.jpg" alt="Pola batik Truntum"><div class="motif-card-content"><h3>Truntum</h3><p>Solo</p></div></article>
+        <article class="motif-card"><img src="assets/sido-mukti.jpg" alt="Pola batik Sido Mukti"><div class="motif-card-content"><h3>Sido Mukti</h3><p>Yogyakarta</p></div></article>
+        <article class="motif-card"><img src="assets/udan-liris.jpg" alt="Pola batik Udan Liris"><div class="motif-card-content"><h3>Udan Liris</h3><p>Jawa Tengah</p></div></article>
+        <article class="motif-card"><img src="assets/ceplok.jpg" alt="Pola batik Ceplok"><div class="motif-card-content"><h3>Ceplok</h3><p>Jawa</p></div></article>
+        <article class="motif-card"><img src="assets/sekar-jagad.jpg" alt="Pola batik Sekar Jagad"><div class="motif-card-content"><h3>Sekar Jagad</h3><p>Nusantara</p></div></article>
       </div>
-
-      <div class="gallery-grid">
-        <article class="gallery-card">
-          <div class="gallery-visual pattern-one">
-            <span>01</span>
-          </div>
-          <div class="gallery-info">
-            <span>GALERI MOTIF</span>
-            <h3>Motif Geometris</h3>
-            <p>Eksplorasi pola, garis, dan bentuk berulang.</p>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-visual pattern-two">
-            <span>02</span>
-          </div>
-          <div class="gallery-info">
-            <span>GALERI MOTIF</span>
-            <h3>Motif Flora</h3>
-            <p>Inspirasi bentuk tumbuhan dalam ragam hias.</p>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-visual pattern-three">
-            <span>03</span>
-          </div>
-          <div class="gallery-info">
-            <span>GALERI MOTIF</span>
-            <h3>Motif Tradisional</h3>
-            <p>Ruang untuk mengenal karakter motif Nusantara.</p>
-          </div>
-        </article>
-      </div>
-
-      <p class="gallery-note">
-        Ilustrasi galeri ini merupakan elemen visual awal, bukan foto
-        batik asli atau hasil klasifikasi model.
-      </p>
+      <p class="gallery-disclaimer">Gambar galeri merupakan visual referensi untuk tampilan awal dan dapat diganti dengan foto motif yang telah diverifikasi.</p>
     </section>
 
-    <section class="about-section" id="tentang">
-      <div class="about-symbol">B.</div>
-      <div>
-        <p class="section-kicker">TENTANG BATIKIN</p>
-        <h2>Tradisi bertemu inovasi.</h2>
-        <p>
-          BatikiN merupakan pengembangan aplikasi eksplorasi motif batik
-          dengan pendekatan Convolutional Neural Network (CNN).
-          Proyek ini bertujuan memperkenalkan pemanfaatan kecerdasan
-          buatan untuk mendukung pengenalan warisan budaya Indonesia.
-        </p>
-      </div>
-    </section>
+    <section class="about-section" id="tentang"><div class="about-mark">✿</div><div><div class="section-kicker">TENTANG BATIKIN</div><h2>Teknologi untuk Warisan Nusantara</h2><p><strong>BatikiN (Batik Innovation Nusantara)</strong> merupakan platform eksplorasi motif batik berbasis kecerdasan buatan yang dikembangkan untuk mendukung pengenalan motif serta membuka ruang inspirasi bagi pengembangan desain dan ekosistem industri kreatif Nusantara.</p><p class="project-title">Pemanfaatan Convolutional Neural Network untuk Pengembangan Motif Batik dan Ekosistem Industri Kreatif Nusantara</p></div></section>
   </main>
-
-  <footer class="footer">
-    <a class="brand footer-brand" href="#">
-      <span class="brand-icon">B</span>
-      <span>Batiki<span class="brand-accent">N</span></span>
-    </a>
-    <p>Teknologi untuk mengenal, budaya untuk dilestarikan.</p>
-    <span>© BatikiN</span>
-  </footer>
-
+  <footer class="footer"><a class="footer-brand" href="#beranda">✿ BatikiN</a><p>Batik Innovation Nusantara · Teknologi AI untuk warisan Nusantara</p><small>© <span id="year"></span> BatikiN</small></footer>
   <script src="script.js"></script>
 </body>
 </html>
