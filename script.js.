@@ -1,15 +1,90 @@
 
 const imageInput = document.getElementById("imageInput");
-const previewContainer = document.getElementById("previewContainer");
+const previewWrap = document.getElementById("previewWrap");
 const imagePreview = document.getElementById("imagePreview");
-const fileName = document.getElementById("fileName");
 const removeImage = document.getElementById("removeImage");
-const uploadZone = document.querySelector(".upload-zone");
+const uploadZone = document.getElementById("uploadZone");
 const resultPlaceholder = document.getElementById("resultPlaceholder");
 const resultMessage = document.getElementById("resultMessage");
+const motifGrid = document.getElementById("motifGrid");
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+const motifFolders = [
+  { folder: "batik-bali", name: "Batik Bali" },
+  { folder: "batik-betawi", name: "Batik Betawi" },
+  { folder: "batik-cendrawasih", name: "Batik Cendrawasih" },
+  { folder: "batik-dayak", name: "Batik Dayak" },
+  { folder: "batik-geblek-renteng", name: "Batik Geblek Renteng" },
+  { folder: "batik-ikat-celup", name: "Batik Ikat Celup" },
+  { folder: "batik-insang", name: "Batik Insang" },
+  { folder: "batik-kawung", name: "Batik Kawung" },
+  { folder: "batik-lasem", name: "Batik Lasem" },
+  { folder: "batik-megamendung", name: "Batik Mega Mendung" },
+  { folder: "batik-pala", name: "Batik Pala" },
+  { folder: "batik-parang", name: "Batik Parang" },
+  { folder: "batik-poleng", name: "Batik Poleng" },
+  { folder: "batik-sekar-jagad", name: "Batik Sekar Jagad" },
+  { folder: "batik-tambal", name: "Batik Tambal" }
+];
+
+// Nomor gambar berdasarkan screenshot folder yang kamu kirim.
+const motifImages = {
+  "batik-bali": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85],
+  "batik-betawi": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82],
+  "batik-cendrawasih": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85],
+  "batik-dayak": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85],
+  "batik-geblek-renteng": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85],
+  "batik-ikat-celup": [70, 71, 73, 82],
+  "batik-insang": [72, 77, 83],
+  "batik-kawung": [70, 71, 72, 73, 77],
+  "batik-lasem": [78, 79, 80, 81, 82, 83, 84, 85],
+  "batik-megamendung": [70, 71, 72, 73, 78, 79, 80],
+  "batik-pala": [71, 72, 80, 83],
+  "batik-parang": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
+  "batik-poleng": [72, 81],
+  "batik-sekar-jagad": [73, 77, 81, 85],
+  "batik-tambal": [71, 72, 73]
+};
+
+function tampilkanGaleri() {
+  if (!motifGrid) return;
+
+  motifGrid.innerHTML = "";
+
+  motifFolders.forEach((motif) => {
+    const nomorGambar = motifImages[motif.folder] || [];
+
+    nomorGambar.forEach((nomor, index) => {
+      const imagePath = `galeri/${motif.folder}/${nomor}.jpg`;
+      const card = document.createElement("article");
+      card.className = "motif-card";
+
+      const img = document.createElement("img");
+      img.src = imagePath;
+      img.alt = `${motif.name} nomor ${nomor}`;
+      img.loading = "lazy";
+
+      img.onerror = () => card.remove();
+
+      const content = document.createElement("div");
+      content.className = "motif-card-content";
+
+      const title = document.createElement("h3");
+      title.textContent = motif.name;
+
+      const description = document.createElement("p");
+      description.textContent = `Koleksi ${index + 1}`;
+
+      content.append(title, description);
+      card.append(img, content);
+      motifGrid.appendChild(card);
+    });
+  });
+}
+
+tampilkanGaleri();
 
 let currentImageUrl = null;
 
@@ -19,46 +94,91 @@ function clearImage() {
     currentImageUrl = null;
   }
 
-  imageInput.value = "";
-  imagePreview.removeAttribute("src");
-  fileName.textContent = "";
+  if (imageInput) imageInput.value = "";
+  if (imagePreview) imagePreview.removeAttribute("src");
+  if (previewWrap) previewWrap.hidden = true;
+  if (uploadZone) uploadZone.hidden = false;
+  if (resultPlaceholder) resultPlaceholder.hidden = false;
 
-  previewContainer.hidden = true;
-  uploadZone.hidden = false;
-  resultPlaceholder.hidden = false;
-  resultMessage.hidden = true;
+  if (resultMessage) {
+    resultMessage.hidden = true;
+    resultMessage.textContent = "";
+  }
 }
 
-imageInput.addEventListener("change", function () {
-  const file = imageInput.files[0];
+if (imageInput) {
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (!file) return;
 
-  if (!file) return;
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      alert("Pilih gambar berformat JPG, PNG, atau WebP.");
+      clearImage();
+      return;
+    }
 
-  if (!ALLOWED_TYPES.includes(file.type)) {
-    alert("Format file belum didukung. Pilih JPG, PNG, atau WebP.");
-    clearImage();
-    return;
-  }
+    if (file.size > MAX_FILE_SIZE) {
+      alert("Ukuran gambar maksimal 8 MB.");
+      clearImage();
+      return;
+    }
 
-  if (file.size > MAX_FILE_SIZE) {
-    alert("Ukuran gambar maksimal 8 MB. Silakan pilih gambar lain.");
-    clearImage();
-    return;
-  }
+    if (currentImageUrl) URL.revokeObjectURL(currentImageUrl);
 
-  if (currentImageUrl) {
-    URL.revokeObjectURL(currentImageUrl);
-  }
+    currentImageUrl = URL.createObjectURL(file);
+    imagePreview.src = currentImageUrl;
+    previewWrap.hidden = false;
+    uploadZone.hidden = true;
+    resultPlaceholder.hidden = true;
 
-  currentImageUrl = URL.createObjectURL(file);
+    resultMessage.hidden = false;
+    resultMessage.textContent =
+      "Gambar berhasil dimuat. Prediksi motif memerlukan layanan AI yang aktif.";
+  });
+}
 
-  imagePreview.src = currentImageUrl;
-  fileName.textContent = file.name;
+if (removeImage) {
+  removeImage.addEventListener("click", clearImage);
+}
 
-  previewContainer.hidden = false;
-  uploadZone.hidden = true;
-  resultPlaceholder.hidden = true;
-  resultMessage.hidden = false;
-});
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
-removeImage.addEventListener("click", clearImage);
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    navLinks.classList.toggle("open", !isOpen);
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
+
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+
+function geserGaleri(arah) {
+  if (!motifGrid) return;
+
+  const card = motifGrid.querySelector(".motif-card");
+  if (!card) return;
+
+  const jarak = card.getBoundingClientRect().width + 20;
+  motifGrid.scrollBy({ left: arah * jarak * 2, behavior: "smooth" });
+}
+
+if (galleryPrev) {
+  galleryPrev.addEventListener("click", () => geserGaleri(-1));
+}
+
+if (galleryNext) {
+  galleryNext.addEventListener("click", () => geserGaleri(1));
+}
