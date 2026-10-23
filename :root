@@ -1,0 +1,76 @@
+
+:root {
+  --navy: #55220F;
+  --navy-light: #733019;
+  --cream: #F7F0E6;
+  --white: #FFFFFF;
+  --brown: #96310F;
+  --brown-dark: #55220F;
+  --cyan: #D9AD83;
+  --text: #3B241B;
+  --muted: #7D6A5D;
+  --border: #E9DCCB;
+  --shadow: 0 8px 24px rgba(85, 34, 15, 0.07);
+}
+
+
+/* Penyesuaian identitas visual BatikiN */
+
+.navbar {
+  background: #FFFFFF;
+  color: #55220F;
+  border-bottom: 1px solid #E9DCCB;
+}
+
+.nav-links a {
+  color: #49352B;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #96310F;
+}
+
+.nav-button {
+  border-color: #96310F;
+  color: #96310F;
+}
+
+.nav-button:hover {
+  background: #F7F0E6;
+}
+
+.brand small {
+  color: #7D6A5D;
+}
+
+.brand-icon {
+  border-color: #96310F;
+  color: #96310F;
+}
+
+.brand-accent {
+  color: #96310F;
+}
+
+.primary-button {
+  background: #96310F;
+}
+
+.primary-button:hover {
+  background: #78270B;
+}
+
+.secondary-button {
+  border-color: #B98C6A;
+  color: #55220F;
+}
+
+.upload-zone:hover {
+  border-color: #96310F;
+  background: #FCF5EB;
+}
+
+.footer {
+  background: #55220F;
+}
