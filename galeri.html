@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Motif Batik | BatikiN</title>
+  <style>
+    :root {
+      --cream: #F7F0E6;
+      --brown: #55220F;
+      --terra: #96310F;
+      --text: #3B241B;
+      --muted: #7D6A5D;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid #E9DCCB;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--brown);
+      font-size: 25px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    nav { display: flex; gap: 20px; flex-wrap: wrap; }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a.active, nav a:hover {
+      color: var(--terra);
+      font-weight: bold;
+    }
+
+    .hero {
+      padding: 54px 6% 36px;
+      background: linear-gradient(120deg, #F7F0E6, #EAD3B8);
+    }
+
+    .eyebrow {
+      color: var(--terra);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      color: var(--brown);
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 12px 0;
+    }
+
+    .hero p {
+      max-width: 650px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    main { padding: 32px 6% 60px; }
+
+    .tools {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    input, select {
+      background: white;
+      border: 1px solid #D8C5B0;
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 14px;
+    }
+
+    input { flex: 1; min-width: 210px; }
+    select { min-width: 210px; max-width: 100%; }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px #55220F10;
+      border: 1px solid #E9DCCB;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #EADCCB;
+    }
+
+    .card-info { padding: 15px; }
+
+    .card-info h2 {
+      font-size: 16px;
+      margin: 0 0 8px;
+      color: var(--brown);
+    }
+
+    .card-info p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .empty {
+      display: none;
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+      background: white;
+      border-radius: 12px;
+    }
+
+    footer {
+      padding: 24px 6%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid #E9DCCB;
+    }
+
+    @media (max-width: 600px) {
+      header { align-items: flex-start; }
+      nav { gap: 12px; }
+      .hero { padding-top: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">BatikiN.</a>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a class="active" href="galeri.html">Galeri</a>
+      <a href="identifikasi.html">Identifikasi</a>
+      <a href="tentang.html">Tentang</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Warisan Motif Nusantara</div>
+    <h1>Galeri Motif Batik</h1>
+    <p>
+      Jelajahi keindahan motif batik dari berbagai daerah Indonesia.
+      Temukan ragam corak, warna, dan karakter yang menjadi bagian
+      dari kekayaan budaya Nusantara.
+    </p>
+  </section>
+
+  <main>
+    <div class="tools">
+      <input id="search" type="search"
+        placeholder="Cari nama motif batik..."
+        aria-label="Cari motif batik">
+
+      <select id="category" aria-label="Filter kategori">
+        <option value="">Semua kategori</option>
+      </select>
+    </div>
+
+    <p class="count" id="count">Memuat galeri...</p>
+    <section class="gallery" id="gallery"></section>
+    <div class="empty" id="empty">
+      Gambar tidak ditemukan. Coba kata kunci atau kategori lain.
+    </div>
+  </main>
+
+  <footer>
+    BatikiN — Batik Innovation Nusantara
+  </footer>
+
+  <script>
+    const categories = [
+      ["Batik Bali", "batik-bali"],
+      ["Batik Betawi", "batik-betawi"],
+      ["Batik Cendrawasih", "batik-cendrawasih"],
+      ["Batik Dayak", "batik-dayak"],
+      ["Batik Geblek Renteng", "batik-geblek-renteng"],
+      ["Batik Ikat Celup", "batik-ikat-celup"],
+      ["Batik Insang", "batik-insang"],
+      ["Batik Kawung", "batik-kawung"],
+      ["Batik Lasem", "batik-lasem"],
+      ["Batik Megamendung", "batik-megamendung"],
+      ["Batik Pala", "batik-pala"],
+      ["Batik Parang", "batik-parang"],
+      ["Batik Poleng", "batik-poleng"],
+      ["Batik Sekar Jagad", "batik-sekar-jagad"],
+      ["Batik Tambal", "batik-tambal"]
+    ];
+
+    const gallery = document.getElementById("gallery");
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const count = document.getElementById("count");
+    const empty = document.getElementById("empty");
+
+    categories.forEach(([label, folder]) => {
+      const option = document.createElement("option");
+      option.value = folder;
+      option.textContent = label;
+      category.appendChild(option);
+    });
+
+    // Ganti daftar nama file ini sesuai gambar yang kamu unggah.
+    // Contoh: 70.jpg, 71.jpg, dan 72.jpg.
+    const imageNumbers = ["70.jpg", "71.jpg", "72.jpg", "73.jpg", "74.jpg"];
+
+    const images = categories.flatMap(([label, folder]) =>
+      imageNumbers.map(file => ({
+        label,
+        folder,
+        file,
+        src: `galeri/${folder}/${file}`
+      }))
+    );
+
+    function renderGallery() {
+      const term = search.value.toLowerCase().trim();
+      const selected = category.value;
+
+      const filtered = images.filter(item =>
+        (!selected || item.folder === selected) &&
+        item.label.toLowerCase().includes(term)
+      );
+
+      gallery.innerHTML = "";
+
+      filtered.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.label;
+        img.loading = "lazy";
+
+        img.onerror = () => {
+          card.style.display = "none";
+        };
+
+        const info = document.createElement("div");
+        info.className = "card-info";
+
+        const title = document.createElement("h2");
+        title.textContent = item.label;
+
+        const description = document.createElement("p");
+        description.textContent = "Motif batik Nusantara";
+
+        info.append(title, description);
+        card.append(img, info);
+        gallery.appendChild(card);
+      });
+
+      count.textContent = `${filtered.length} gambar dalam hasil pencarian`;
+      empty.style.display = filtered.length ? "none" : "block";
+    }
+
+    search.addEventListener("input", renderGallery);
+    category.addEventListener("change", renderGallery);
+    renderGallery();
+  </script>
+</body>
+</html>
